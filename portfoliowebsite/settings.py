@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,6 +61,8 @@ MIDDLEWARE = [
 
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
+
+CSRF_TRUSTED_ORIGINS = ['*']
 
 ROOT_URLCONF = 'portfoliowebsite.urls'
 
@@ -149,4 +153,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
 
-CSRF_TRUSTED_ORIGINS = ['*']
