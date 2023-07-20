@@ -55,6 +55,7 @@ def contactPage(request):
     }
     return render(request,'core/contact.html',context)
 
+@csrf_exempt
 def projectPage(request,pk):
     project = Project.objects.get(id=pk)
     count = project.comment_set.count
@@ -80,7 +81,7 @@ def projectPage(request,pk):
     }
     return render(request,'core/project.html',context)
 
-
+@csrf_exempt
 def addProject(request):
 
     form = ProjectForm()
@@ -97,7 +98,7 @@ def addProject(request):
     }
     return render(request,'core/project_form.html',context)
 
-
+@csrf_exempt
 def editProject(request,pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
@@ -113,7 +114,7 @@ def editProject(request,pk):
     }
     return render(request,'core/project_form.html',context)
 
-
+@csrf_exempt
 def deleteProject(request,pk):
     project = Project.objects.get(id=pk)
 
@@ -146,7 +147,7 @@ def messagePage(request,pk):
     }
     return render(request,'core/message.html',context)
 
-
+@csrf_exempt
 def addSkill(request):
     form = SkillForm()
 
@@ -162,6 +163,7 @@ def addSkill(request):
     }
     return render(request,'core/skill_form.html',context)
 
+@csrf_exempt
 @login_required
 def addEndorsement(request):
     form = EndorsementForm()
@@ -177,7 +179,7 @@ def addEndorsement(request):
     }
     return render(request,'core/endorsement_form.html',context)
 
-
+@csrf_exempt
 def payment(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -231,7 +233,7 @@ def payment_status(request):
     except:
         return render(request, 'core/callback.html', {'status': False})
 
-
+@csrf_exempt
 def chartPage(request):
     form = QuestionForm()
 
@@ -247,8 +249,8 @@ def chartPage(request):
     }
     return render(request,'core/chart.html',context)
 
+@csrf_exempt
 def loginPage(request):
-
     if request.method == 'POST':
         uname = request.POST.get('username')
         password = request.POST.get('pass')
@@ -267,6 +269,7 @@ def loginPage(request):
     }
     return render(request,"core/login_page.html",context)
 
+@csrf_exempt
 def signupPage(request):
 
     if request.method == 'POST':
@@ -289,7 +292,7 @@ def signupPage(request):
     }
     return render(request,'core/register_page.html',context)
 
-
+@csrf_exempt
 def logoutPage(request):
 
     if request.method == 'POST':
