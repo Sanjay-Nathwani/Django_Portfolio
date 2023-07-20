@@ -1,0 +1,120 @@
+{% extends 'core/main.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .home-section{
+            padding : 0;
+            margin : 0;
+            box-sizing : border-box;
+            position: relative;
+        }
+    </style>
+    <div class="home-section">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-content-intro">
+                    <img id="profile-pic" src="{% static 'images/hero_img.webp' %}" alt="">
+                    <h1 class="intro-name">Sanjay <br> Nathwani</h1>
+                </div>
+    
+                <div class="hero-content-subheadline">
+                    <h2 class="description">FullStack Developer</h2>
+                    <p class="slogan">Innovate. Iterate. Inspire</p>
+                </div>
+            </div>  
+        </section>
+    
+        <section class="container section-2">
+            <h3>My Projects</h3>
+            <h5>Projects that make my journey worthwhile</h5>
+            <div class="project-wrapper">
+    
+                <!-- projects -->
+                {% for project in projects %}
+                    <div class="project-col">
+                        <a href="{% url 'project' project.id %}">
+                            <img class="project-thumbnail" src="{{ project.thumbnail.url }}" alt="">
+                        </a>
+    
+                        <div class="project-body">
+                            <h4>{{project.title}}</h4>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h3>There are no projects in database...</h3>
+                {% endfor %}
+                   
+            </div>
+    
+            
+        </section>
+    
+    
+        <section class="section-1">
+            <div class="skills-container">
+                <h3>Skills</h3>
+    
+                {% for skill in skills %}
+                <div class="skill-wrapper">
+    
+                    {% if skill.logo %}
+                        <img class="skill-logo" src="{{skill.logo.url}}" alt="">
+                    {% endif %}
+                    <div>
+                        <h5 class="text-decoration-underline">{{skill.title}}</h5>
+                        <p>{{skill.body}}</p>
+                    </div>   
+                </div>
+                {% endfor %}
+                
+    
+                <h4>Other Skills</h4>
+                <div class="other-skills-wrapper">
+                    <!-- skills -->
+                    {% for skill in other_skills %}
+                        <div class="skill-tag">
+                            <span>{{skill.title}}</span>
+                        </div>
+                    {% endfor %}
+        
+                </div>
+            </div>   
+        </section>
+        
+        <section class="section-2">
+            <div class="skills-container">
+                <h3>Endorsements</h3>
+                <a class="btn btn-primary my-2" href="{% url 'add-endorsement' %}">Add Endorsement</a>
+                {% for i in endorsements %}
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h5>{{i.name}}</h5>
+                        <p>{{i.body}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+    
+            </div>   
+        </section>
+    
+        <section class="section-1">
+            <h3 class="text-center fw-bolder">(Message me)</h3>
+            <div class="container mt-2">
+                <form class="contact-form" action="" method="POST">
+                    {% csrf_token %}
+    
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="fw-bold" for="{{field.label}}" class="form-label">{{field.label}}</label>
+                        {{field}}
+                    </div>
+                    {% endfor %}
+    
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
+            </div>
+        </section>
+    </div>
+    
+{% endblock content %}

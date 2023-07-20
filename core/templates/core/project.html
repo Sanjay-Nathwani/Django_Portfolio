@@ -1,0 +1,62 @@
+{% extends 'core/main.html' %}
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="project-container">
+        <div class="project-img">
+            <img class="project-image" src="{{project.thumbnail.url}}" alt="">
+        </div>
+        
+        <div class="project-title"><h3>{{project.title}}</h3></div>
+        {% if request.user.is_superuser %}
+            <div class="d-inline">
+                <a href="{% url 'edit-project' project.id %}" class="btn btn-warning ">
+                    Edit
+                </a>
+            </div>
+
+            <div class="d-inline ms-1">
+                <a href="{% url 'delete-project' project.id %}" class="btn btn-danger">
+                    Delete
+                </a>
+            </div>
+        {% endif %}
+        
+        <hr>
+        <p>{{project.body | safe}}</p>
+
+        <div class="comments-container">
+            <h3>Comments ({{count}})</h3>
+            <hr>
+
+            <h3>Add Comment</h3>
+
+            <form action="." method="POST">
+                {% csrf_token %}
+            
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{field.label}}" class="form-label">{{field.label}}</label>
+                        {{field}}
+                    </div>
+                {% endfor %}
+                
+                <input class="btn btn-primary" type="submit" value="Add">
+            </form>
+
+            <hr>
+            {% for comment in comments %}
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h5>{{comment.name}}</h5>
+                        <small>{{comment.created | timesince}} ago</small>
+                        <p class="my-3">{{comment.body}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

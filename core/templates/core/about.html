@@ -1,0 +1,64 @@
+{% extends 'core/main.html' %}
+
+{% load static %}
+   
+{% block content %}
+<style>
+  h2,p,h4,h3,strong,span{
+    font-size : 20px;
+  }
+</style>
+<section id="about" class="about">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>About</h2>
+      <p>Hello ,I'm Sanjay Nathwani a passionate Django web developer with a strong background in building dynamic and robust web applications. My journey in the world of programming began with a curiosity that quickly turned into a deep love for creating digital solutions.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="{% static 'images/hero_img.webp' %}" class="img-fluid" alt="hero_image">
+
+        <div class="mt-3 text-center">
+          <h3 style="color: #173b6c; font-weight:bold; margin-bottom:14px;">Social Media:</h3>
+          <div>
+              <a href="https://linkedin.com/in/sanjay-nathwani-07656020a" class="mx-2"><i class="fa-brands fa-linkedin fa-beat fa-2xl"></i></a>
+              <a href="https://github.com/Sanjay-Nathwani" class="mx-2"><i class="fa-brands fa-github fa-beat fa-2xl"></i></a>
+              <a href="" class="mx-2"><i class="fa-brands fa-instagram fa-beat fa-2xl"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 pt-4 pt-lg-0 content">
+        <h3>Passionate Web Developer.</h3>
+        <p class="fst-italic">
+          As a Django enthusiast, I specialize in utilizing the power of this high-level Python web framework to craft seamless and user-friendly web experiences.
+        </p>
+        <div class="row">
+          <div class="col-lg-6">
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>16 Oct 2002</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><b>+91</b> 7383551774</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Gujarat, India</span></li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>21</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelor</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>sanjaynathwani1610@gmail.com</span></li>
+              <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+            </ul>
+          </div>
+        </div>
+        <p>
+          I'm excited about the future of web development and the endless possibilities it offers continuously. If you're looking for a Django web developer who is committed to excellence, innovation, and collaboration, I'd love to connect with you and explore how I can contribute to your next project.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section> 
+{% endblock content %}

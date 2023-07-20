@@ -1,0 +1,48 @@
+{% extends 'core/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .container{
+        display : flex;
+        align-item :center;
+        justify-content : center;
+        margin-top : 10%;
+    }
+
+    .btn-container{
+        display : flex;
+        align-item : center;
+        justify-content : center;
+    }
+
+    input{
+        padding : 10px 20px;
+        font-size : 20px;
+        border-radius : 15px;
+        background-color: red;
+        color : white;
+        border : 1px solid white;
+        transition: all ease 0.3s;
+    }
+
+    input:hover{
+        background-color: blue;
+    }
+</style>
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <h1>Are you sure you want to logout ?</h1>
+
+        <div class="btn-container">
+            <input type="submit" value="logout">
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+

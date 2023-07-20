@@ -1,0 +1,76 @@
+{% extends 'core/main.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .razorpay-payment-button{
+        background: #168afa;
+        padding : 6px 12px;
+        border-radius : 5px;
+        letter-spacing : 0.5px;
+        color : white;
+        border : none;
+        font-size : 20px;
+        font-weight : 500;
+        text-transform: uppercase;
+        transition-duration:0.2s 
+    }
+
+    .razorpay-payment-button:hover{
+        box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    }
+
+    .razorpay-payment-button:active{
+        box-shadow : 0 0px 0px;
+        transform : translateY(3px);
+    }
+</style>
+<div class="container mt-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3 style="font-family: 'Fuzzy Bubbles', cursive; font-size:30px;">
+                        <b>Buy me a chai :&#41;</b>
+                    </h3>
+                    <h4>A supporter is worth a thousand followers.</h4>
+                    <img src="{% static 'images/tea_image.jpg' %}" alt="tea_image" style="height:280px; width:320px;" class="mb-2">
+                </div>
+                <div class="card-body">
+                    {% crispy form %}
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            {% if payment %}
+                                <form action="{% url 'payment-status' %}" method="POST" class="payment-status">
+                                    {% csrf_token %}
+                                    <script
+                                            src="https://checkout.razorpay.com/v1/checkout.js"
+                                            data-key="rzp_test_szZEDMGcAmSXIB"
+                                            data-amount="{{ payment.amount }}"
+                                            data-currency="{{ payment.currency }}"
+                                            data-order_id="{{ payment.id }}"
+                                            data-buttontext="Pay with Razorpay"
+                                            data-name="Buy me a chai :)"
+                                            data-image="https://img.freepik.com/free-vector/flat-design-cafe-signage-illustration_23-2149270893.jpg?w=2000"
+                                            data-prefill.name="{{ payment.name }}"
+                                            data-prefill.email="sanjaynathwani1610@gmail.com"
+                                            data-theme.color="#271EA2"
+                                    ></script>
+                                    <input type="hidden" custom="Hidden Element" name="hidden">
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.razorpay-payment-button').addClass('btn btn-primary');
+</script>
+{% endblock content %}

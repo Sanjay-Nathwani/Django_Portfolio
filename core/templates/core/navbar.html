@@ -1,0 +1,67 @@
+{% comment %} <section class="navigation-bar" id="myTopnav">
+    <a class="nav-link {% if navbar == 'home' %}active{% endif %}" href="{% url 'home' %}">
+        Home
+    </a>
+
+    <a class="nav-link {% if navbar == 'about' %}active{% endif %}" href="{% url 'about' %}">
+        About
+    </a>
+
+    <a class="nav-link {% if navbar == 'contact' %}active{% endif %}" href="{% url 'contact' %}">
+        Contact
+    </a>
+
+    {% if request.user.is_authenticated %}
+        <a class="nav-link {% if navbar == 'inbox' %}active{% endif %}" href="{% url 'inbox' %}">
+            Inbox
+        </a>
+
+        <a class="nav-link {% if navbar == 'add-project' %}active{% endif %}" href="{% url 'add-project' %}">
+            Add Project
+        </a>
+
+        <a class="nav-link {% if navbar == 'add-skill' %}active{% endif %}" href="{% url 'add-skill' %}">
+            Add Skill
+        </a>
+
+        <a class="btn btn-sm btn-warning nav-link" href="{% url 'donation' %}">
+            BUY ME A COFFEE
+        </a>
+    {% endif %}
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa-solid fa-bars fa-beat fa-lg"></i>
+    </a>
+</section> {% endcomment %}
+
+{% load static %}
+
+<section class="top-nav">
+    <div style="margin-left : 30px;">
+        <a href="{% url 'home' %}"><i class="fa-solid fa-code fa-shake fa-2xl" style="color:white;"></i></a>
+    </div>
+
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+    </label>
+    <ul class="menu">
+      <li><a class="link {% if navbar == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+      <li><a class="link {% if navbar == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a></li>
+
+        {% if request.user.is_superuser %}
+            <li><a class="link {% if navbar == 'inbox' %}active{% endif %}" href="{% url 'inbox' %}">Inbox</a></li>
+            <li><a class="link {% if navbar == 'add-project' %}active{% endif %}" href="{% url 'add-project' %}">Add Project</a></li>
+            <li><a class="link {% if navbar == 'add-skill' %}active{% endif %}" href="{% url 'add-skill' %}">Add Skill</a></li>
+        {% endif %}
+      
+        {% if request.user.is_authenticated %}
+            <li><a class="link {% if navbar == 'vote' %}active{% endif %}" href="{% url 'chart' %}">Vote</a></li>
+            <li><a class="link {% if navbar == 'donation' %}active{% endif %}" href="{% url 'payment' %}">Buy me a chai</a></li>
+            <li><a class="link {% if navbar == 'logout' %}active{% endif %}" href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a class="link {% if navbar == 'login' %}active{% endif %}" href="{% url 'login' %}">Login/Signup</a></li>
+        {% endif %}
+
+    </ul>
+</section>
